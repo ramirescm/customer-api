@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "co9j4FjLnL0i5VDGuIFxJKQ6lUQ9I46jjaUsaPkbx6av1yfLkyqhBHJIdW3177wJxEJy5YsStam5elBDgX1kPw==",
+  "success": true,
+  "projectFilePath": "/Users/ramiresmarques/projects/customer-api/src/Customer.API/Customer.API.csproj",
+  "expectedPackageFiles": [
+    "/Users/ramiresmarques/.nuget/packages/microsoft.netcore.app.ref/6.0.25/microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "/Users/ramiresmarques/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.25/microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
+    "/Users/ramiresmarques/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.25/microsoft.netcore.app.host.osx-arm64.6.0.25.nupkg.sha512"
+  ],
+  "logs": []
+}
