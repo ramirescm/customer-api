@@ -1,19 +1,4 @@
-
-<!--ts-->
-   * [Sobre](#sobre)
-   * [Requisitos técnicos](#requisitos-técnicos)
-   * [Instalação](#instalacao)
-   * [Como usar](#como-usar)
-      * [Pre Requisitos](#pre-requisitos)
-      * [Local files](#local-files)
-      * [Remote files](#remote-files)
-      * [Multiple files](#multiple-files)
-      * [Combo](#combo)
-   * [Tests](#testes)
-   * [Tecnologias](#tecnologias)
-<!--te-->
-
-# Sobre
+# Desafio
 O seu objetivo é construir uma WebApi desenvolvida em .net 6.0 para efetuar o registro de clientes que deverão informar o nome completo, e-mail e uma lista de telefones para receber informações.
 
 Para isso você deverá aplicar o conceito de CRUD:
@@ -40,15 +25,28 @@ Você deverá entregar uma WebApi que tenha as seguintes funções:
 - 3 - Criar testes de unidade;
 - 4 - Documentar a WebApi via Swagger.
 
-# Instalação
 
-Pré-requisitos
-- .NET 6
-- VS Code, Visual Studio, Rider
-- InSominia (não obrigatório)
+# Rodando o Back End (servidor)
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[.NET 6](https://git-scm.com). 
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/), [Rider](https://www.jetbrains.com/pt-br/rider/), [VisualStudio](https://visualstudio.microsoft.com/pt-br/)
 
-Como usar
-- Baixe e execute o projeto, se tudo der certo o swagger deve ser aberto.
+
+```bash
+# Clone este repositório
+$ git clone <https://github.com/ramirescm/customer-api>
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd customer-api
+
+# Restaure os pacotes
+$ dotnet restore
+
+# Execute a aplicação
+$ dotnet run --project src/Customer.API
+
+# O servidor inciará na porta:7082 - acesse <https://localhost:7082/swagger/index.html>
+```
 
  ![texto](swagger.png) 
 
@@ -80,4 +78,9 @@ dotnet ef database update 0 --project src/Customer.Infra --startup-project src/C
 ## Remove migration
 dotnet ef migrations remove --project src/Customer.Infra --startup-project src/Customer.Api
 ```
-fdfdfd
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
