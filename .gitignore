@@ -30,3 +30,4 @@ msbuild.wrn
 .vs
 .idea
 .config
+data/
