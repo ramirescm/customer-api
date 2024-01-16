@@ -78,9 +78,4 @@ dotnet ef database update 0 --project src/Customer.Infra --startup-project src/C
 ## Remove migration
 dotnet ef migrations remove --project src/Customer.Infra --startup-project src/Customer.Api
 ```
-### Pré-requisitos
-
-Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
-Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
