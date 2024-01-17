@@ -82,7 +82,7 @@ public class EndpointTests
         // Arrange
         var ddd = "123";
         var number = "4567890";
-        var mockCustomerResponse = new GetCustomerByPhoneResponse(1, "kurt Doe", "kurt.doe@kurt.com", new List<PhoneResponse>());
+        var mockCustomerResponse = new GetCustomerByPhoneResponse(1, "kurt", "kurt@kurt.com", new List<PhoneResponse>());
 
         _mediator.Send(Arg.Any<GetCustomerByPhoneQuery>()).Returns(Task.FromResult(mockCustomerResponse));
 
@@ -97,7 +97,7 @@ public class EndpointTests
         var customer = JsonConvert.DeserializeObject<GetCustomerByPhoneResponse>(content);
 
         customer.Should().NotBeNull();
-        customer.Id.Should().Be(1); // Adjust based on your actual expected data
+        customer.Id.Should().Be(1);
 
         await _mediator.Received().Send(Arg.Any<GetCustomerByPhoneQuery>());
     }
@@ -166,7 +166,7 @@ public class EndpointTests
     {
         // Arrange
         var customerId = 1;
-        var email = "kurt.doe@kurt.com";
+        var email = "kurt@kurt.com";
 
         _mediator.Send(Arg.Any<RemoveCustomerByEmailCommand>()).Returns(new RemoveCustomerResponse());
 

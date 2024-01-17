@@ -3,7 +3,7 @@ using Customer.Core.Repositories;
 using Customer.Core.UoW;
 using NSubstitute;
 
-namespace Customer.API.Tests.Handlers;
+namespace Customer.Application.Tests.Handlers;
 
 public class UpdateEmailCommandHandlerTests
 {
