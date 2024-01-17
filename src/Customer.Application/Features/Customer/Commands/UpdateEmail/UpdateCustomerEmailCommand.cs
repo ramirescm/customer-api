@@ -8,4 +8,4 @@ public class UpdateCustomerEmailCommand : ICommand<UpdateCustomerEmailResponse>
     public string Email { get; set; }
 }
 
-public record UpdateCustomerEmailResponse();
+public record UpdateCustomerEmailResponse;

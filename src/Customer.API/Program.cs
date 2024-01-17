@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Customer.API;
 using Customer.API.Middlewares;
 using Customer.Application;
@@ -7,8 +8,10 @@ using Customer.Infra;
 using Customer.Infra.Repositories;
 using FluentValidation;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureServices(builder);
@@ -24,9 +27,9 @@ static void ConfigureServices(WebApplicationBuilder builder)
     var configuration = builder.Configuration;
 
     services.AddRouting(options => options.LowercaseUrls = true);
-    services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+    services.Configure<JsonOptions>(options =>
     {
-        options.SerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+        options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
 
     services.AddEndpointsApiExplorer();
@@ -35,7 +38,7 @@ static void ConfigureServices(WebApplicationBuilder builder)
     services.AddFluentValidationRulesToSwagger();
     services.AddSwaggerGen(c =>
     {
-        c.SwaggerDoc("v1", new OpenApiInfo()
+        c.SwaggerDoc("v1", new OpenApiInfo
         {
             Title = "Customer.API",
             Version = "v1",
@@ -62,7 +65,7 @@ static void ConfigureApp(WebApplication app)
     {
         s.DocumentTitle = "AA";
         s.DisplayRequestDuration();
-        s.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+        s.DocExpansion(DocExpansion.None);
         s.EnableDeepLinking();
         s.ShowExtensions();
         s.ShowCommonExtensions();

@@ -14,4 +14,4 @@ public class UpdateCustomerPhoneCommand : ICommand<UpdateCustomerPhoneResponse>
     public string Type { get; set; }
 }
 
-public record UpdateCustomerPhoneResponse();
+public record UpdateCustomerPhoneResponse;

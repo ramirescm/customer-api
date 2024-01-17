@@ -6,8 +6,8 @@ namespace Customer.Application.Features.Customer.Commands.UpdatePhone;
 
 public class UpdatePhoneCommandHandler : ICommandHandler<UpdateCustomerPhoneCommand, UpdateCustomerPhoneResponse>
 {
-    private readonly IUnitOfWork _uow;
     private readonly ICustomerRepository _customerRepository;
+    private readonly IUnitOfWork _uow;
 
     public UpdatePhoneCommandHandler(
         IUnitOfWork uow,

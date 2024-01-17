@@ -5,6 +5,7 @@ namespace Customer.Infra;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly CustomerContext _context;
+
     public UnitOfWork(CustomerContext context)
     {
         _context = context;
@@ -19,6 +20,7 @@ public class UnitOfWork : IUnitOfWork
     {
         return await _context.SaveChangesAsync(ct) > 0;
     }
+
     public void BeginTransaction()
     {
         _context.Database.BeginTransaction();

@@ -7,11 +7,12 @@ namespace Customer.Infra;
 
 public class CustomerContext : DbContext
 {
-    public DbSet<Core.Entities.Customer> Customers { get; set; }
     public CustomerContext(DbContextOptions<CustomerContext> options)
         : base(options)
     {
     }
+
+    public DbSet<Core.Entities.Customer> Customers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -55,32 +56,20 @@ public class CustomerContext : DbContext
             entity.SetTableName(ToSnakeCase(entity.GetTableName()));
 
             foreach (var property in entity.GetProperties())
-            {
                 // Set column name
                 property.SetColumnName(ToSnakeCase(property.Name));
-            }
 
             foreach (var key in entity.GetKeys())
-            {
                 // Set key name
                 key.SetName(ToSnakeCase(key.GetName()));
-            }
 
             foreach (var key in entity.GetForeignKeys())
-            {
                 // Set foreign key name
                 key.SetConstraintName(ToSnakeCase(key.GetConstraintName()));
-            }
 
             foreach (var index in entity.GetIndexes())
-            {
                 // Set index name
                 index.SetDatabaseName(ToSnakeCase(index.GetDatabaseName()));
-            }
         }
     }
-
-
-
-
 }

@@ -10,7 +10,7 @@ public static class AppServiceCollectionExtension
     public static void ConfigureAppDependencies(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddMediatR(config => config.RegisterServicesFromAssemblies(typeof(IApplicationEntryPoint).Assembly)
-                .AddOpenBehavior(typeof(ValidationBehavior<,>)));
+            .AddOpenBehavior(typeof(ValidationBehavior<,>)));
         services.AddValidatorsFromAssemblies(new[] { typeof(IApplicationEntryPoint).Assembly });
     }
 }

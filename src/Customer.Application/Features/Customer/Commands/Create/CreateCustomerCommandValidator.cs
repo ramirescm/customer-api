@@ -14,7 +14,7 @@ public sealed class CreateCustomerCommandValidator : AbstractValidator<CreateCus
             .WithMessage("{PropertyName} is required");
 
         RuleForEach(e => e.Phones)
-            .SetValidator(new PhonesValidator()); 
+            .SetValidator(new PhonesValidator());
     }
 }
 
@@ -25,11 +25,11 @@ public class PhonesValidator : AbstractValidator<Phones>
         RuleFor(e => e.AreaCode)
             .NotEmpty()
             .WithMessage("{PropertyName} is required");
-        
+
         RuleFor(e => e.Number)
             .NotEmpty()
             .WithMessage("{PropertyName} is required");
-        
+
         RuleFor(e => e.Type)
             .NotEmpty()
             .WithMessage("{PropertyName} is required")
@@ -37,7 +37,7 @@ public class PhonesValidator : AbstractValidator<Phones>
             .WithMessage("{PropertyName} invalid type");
     }
 
-    bool ValidateType(string type)
+    private bool ValidateType(string type)
     {
         var types = new List<string> { "Mobile", "Landline" };
         return types.Contains(type);

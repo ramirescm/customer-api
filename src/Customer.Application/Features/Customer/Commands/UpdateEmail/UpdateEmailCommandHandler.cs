@@ -6,9 +6,9 @@ namespace Customer.Application.Features.Customer.Commands.UpdateEmail;
 
 public class UpdateEmailCommandHandler : ICommandHandler<UpdateCustomerEmailCommand, UpdateCustomerEmailResponse>
 {
-    private readonly IUnitOfWork _uow;
     private readonly ICustomerRepository _customerRepository;
-    
+    private readonly IUnitOfWork _uow;
+
     public UpdateEmailCommandHandler(
         IUnitOfWork uow,
         ICustomerRepository customerRepository)
@@ -16,8 +16,9 @@ public class UpdateEmailCommandHandler : ICommandHandler<UpdateCustomerEmailComm
         _uow = uow;
         _customerRepository = customerRepository;
     }
-    
-    public async Task<UpdateCustomerEmailResponse> Handle(UpdateCustomerEmailCommand request, CancellationToken cancellationToken)
+
+    public async Task<UpdateCustomerEmailResponse> Handle(UpdateCustomerEmailCommand request,
+        CancellationToken cancellationToken)
     {
         await _customerRepository.UpdateEmail(request.CustomerId, request.Email);
         await _uow.CommitAsync(cancellationToken);

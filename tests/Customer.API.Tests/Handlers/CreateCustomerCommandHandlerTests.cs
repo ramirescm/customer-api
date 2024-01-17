@@ -3,7 +3,7 @@ using Customer.Core.Repositories;
 using Customer.Core.UoW;
 using NSubstitute;
 
-namespace Customer.API.Tests;
+namespace Customer.API.Tests.Handlers;
 
 public class CreateCustomerCommandHandlerTests
 {
@@ -17,11 +17,11 @@ public class CreateCustomerCommandHandlerTests
 
         var createCustomerCommand = new CreateCustomerCommand
         {
-            FullName = "John Doe",
-            Email = "john.doe@example.com",
+            FullName = "Ozzy Batman",
+            Email = "ozzy@fest.com",
             Phones = new List<Phones>
             {
-                new Phones { AreaCode = "123", Number = "4567890", Type = "Mobile" }
+                new() { AreaCode = "123", Number = "4567890", Type = "Mobile" }
             }
         };
 
@@ -48,11 +48,11 @@ public class CreateCustomerCommandHandlerTests
 
         var createCustomerCommand = new CreateCustomerCommand
         {
-            FullName = "John Doe",
-            Email = "john.doe@example.com",
+            FullName = "Billy The Kid",
+            Email = "billy@gangstar.com",
             Phones = new List<Phones>
             {
-                new Phones { AreaCode = "123", Number = "4567890", Type = "Mobile" }
+                new() { AreaCode = "123", Number = "4567890", Type = "Mobile" }
             }
         };
 
@@ -61,6 +61,7 @@ public class CreateCustomerCommandHandlerTests
         customerRepository.EmailsExists(createCustomerCommand.Email).Returns(true);
 
         // Act & Assert
-        await Assert.ThrowsAsync<ApplicationException>(async () => await handler.Handle(createCustomerCommand, cancellationToken));
+        await Assert.ThrowsAsync<ApplicationException>(async () =>
+            await handler.Handle(createCustomerCommand, cancellationToken));
     }
 }

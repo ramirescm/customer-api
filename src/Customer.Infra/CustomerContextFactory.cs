@@ -12,7 +12,7 @@ public class CustomerContextFactory : IDesignTimeDbContextFactory<CustomerContex
             .AddJsonFile(Path.Combine(AppContext.BaseDirectory, "appsettings.Development.json"))
             .AddJsonFile(Path.Combine(AppContext.BaseDirectory, "appsettings.json"))
             .Build();
-        
+
         var optionsBuilder = new DbContextOptionsBuilder<CustomerContext>();
         optionsBuilder.UseNpgsql(configuration.GetConnectionString("DatabaseSettings"));
 

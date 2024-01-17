@@ -1,10 +1,9 @@
-using Customer.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Customer.Infra.Mappings;
 
-public class CustomerMapping :  IEntityTypeConfiguration<Core.Entities.Customer>
+public class CustomerMapping : IEntityTypeConfiguration<Core.Entities.Customer>
 {
     public void Configure(EntityTypeBuilder<Core.Entities.Customer> builder)
     {

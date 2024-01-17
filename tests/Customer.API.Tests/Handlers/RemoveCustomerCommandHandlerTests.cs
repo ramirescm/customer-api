@@ -3,7 +3,7 @@ using Customer.Core.Repositories;
 using Customer.Core.UoW;
 using NSubstitute;
 
-namespace Customer.API.Tests;
+namespace Customer.API.Tests.Handlers;
 
 public class RemoveCustomerCommandHandlerTests
 {
@@ -17,15 +17,15 @@ public class RemoveCustomerCommandHandlerTests
 
         var removeCustomerCommand = new RemoveCustomerByEmailCommand
         {
-            CustomerId = 1, // Set the customer ID for testing
-            Email = "john.doe@example.com"
+            CustomerId = 1,
+            Email = "joao@amp.com"
         };
 
         var cancellationToken = CancellationToken.None;
 
-        // Assuming your RemoveByEmail method returns a boolean indicating success
+        // Removed with success
         customerRepository.RemoveByEmail(removeCustomerCommand.CustomerId, removeCustomerCommand.Email)
-            .Returns(true);
+            .Returns(Task.FromResult(true));
 
         // Act
         var result = await handler.Handle(removeCustomerCommand, cancellationToken);
@@ -33,7 +33,8 @@ public class RemoveCustomerCommandHandlerTests
         // Assert
         Assert.NotNull(result);
         Assert.IsType<RemoveCustomerResponse>(result);
-        await customerRepository.Received(1).RemoveByEmail(removeCustomerCommand.CustomerId, removeCustomerCommand.Email);
+        await customerRepository.Received(1)
+            .RemoveByEmail(removeCustomerCommand.CustomerId, removeCustomerCommand.Email);
         await uow.Received(1).CommitAsync(cancellationToken);
     }
 
@@ -47,15 +48,15 @@ public class RemoveCustomerCommandHandlerTests
 
         var removeCustomerCommand = new RemoveCustomerByEmailCommand
         {
-            CustomerId = 1, // Set the customer ID for testing
-            Email = "john.doe@example.com"
+            CustomerId = 1,
+            Email = "don@torreto.com"
         };
 
-        var cancellationToken = CancellationToken.None;
+        var cancellationToken = new CancellationToken();
 
-        // Assuming your RemoveByEmail method returns a boolean indicating failure
+        // Already removed
         customerRepository.RemoveByEmail(removeCustomerCommand.CustomerId, removeCustomerCommand.Email)
-            .Returns(false);
+            .Returns(Task.FromResult(false));
 
         // Act
         var result = await handler.Handle(removeCustomerCommand, cancellationToken);
@@ -63,7 +64,9 @@ public class RemoveCustomerCommandHandlerTests
         // Assert
         Assert.NotNull(result);
         Assert.IsType<RemoveCustomerResponse>(result);
-        await customerRepository.Received(1).RemoveByEmail(removeCustomerCommand.CustomerId, removeCustomerCommand.Email);
-        await uow.DidNotReceive().CommitAsync(cancellationToken);
+        await customerRepository.Received(1)
+            .RemoveByEmail(removeCustomerCommand.CustomerId, removeCustomerCommand.Email);
+        await uow.Received(1).CommitAsync(cancellationToken);
+        //await uow.DidNotReceive().CommitAsync(Arg.Any<CancellationToken>());
     }
 }

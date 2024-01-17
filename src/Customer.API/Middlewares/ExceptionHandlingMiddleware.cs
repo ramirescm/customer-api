@@ -1,7 +1,7 @@
 using System.Text.Json;
+using Customer.Application.Exceptions;
 using Customer.Core.Exceptions;
 using ApplicationException = Customer.Core.Exceptions.ApplicationException;
-using ValidationException = Customer.Application.Exceptions.ValidationException;
 
 namespace Customer.API.Middlewares;
 
@@ -9,7 +9,10 @@ internal sealed class ExceptionHandlingMiddleware : IMiddleware
 {
     private readonly ILogger<ExceptionHandlingMiddleware> _logger;
 
-    public ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> logger) => _logger = logger;
+    public ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> logger)
+    {
+        _logger = logger;
+    }
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
@@ -44,30 +47,32 @@ internal sealed class ExceptionHandlingMiddleware : IMiddleware
         await httpContext.Response.WriteAsync(JsonSerializer.Serialize(response));
     }
 
-    private static int GetStatusCode(Exception exception) =>
-        exception switch
+    private static int GetStatusCode(Exception exception)
+    {
+        return exception switch
         {
             BadRequestException => StatusCodes.Status400BadRequest,
             NotFoundException => StatusCodes.Status404NotFound,
             ValidationException => StatusCodes.Status422UnprocessableEntity,
             _ => StatusCodes.Status500InternalServerError
         };
+    }
 
-    private static string GetTitle(Exception exception) =>
-        exception switch
+    private static string GetTitle(Exception exception)
+    {
+        return exception switch
         {
             ApplicationException applicationException => applicationException.Title,
             _ => "Server Error"
         };
+    }
 
     private static IReadOnlyDictionary<string, string[]> GetErrors(Exception exception)
     {
-        IReadOnlyDictionary<string, string[]> errors =  new Dictionary<string, string[]>();;
+        IReadOnlyDictionary<string, string[]> errors = new Dictionary<string, string[]>();
+        ;
 
-        if (exception is ValidationException validationException)
-        {
-            errors = validationException.ErrorsDictionary;
-        }
+        if (exception is ValidationException validationException) errors = validationException.ErrorsDictionary;
 
         return errors;
     }

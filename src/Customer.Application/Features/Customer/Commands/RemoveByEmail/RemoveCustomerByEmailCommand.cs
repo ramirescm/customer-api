@@ -8,4 +8,4 @@ public class RemoveCustomerByEmailCommand : ICommand<RemoveCustomerResponse>
     public string Email { get; set; }
 }
 
-public record RemoveCustomerResponse();
+public record RemoveCustomerResponse;

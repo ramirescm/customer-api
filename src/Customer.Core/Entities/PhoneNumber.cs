@@ -2,11 +2,9 @@ namespace Customer.Core.Entities;
 
 public class PhoneNumber : Entity
 {
-    public string AreaCode { get; set; }
-    public string Number { get; set;}
-    public PhoneType Type { get; set;}
-    
-    private PhoneNumber() { }
+    private PhoneNumber()
+    {
+    }
 
     public PhoneNumber(string areaCode, string number, PhoneType type)
     {
@@ -14,6 +12,10 @@ public class PhoneNumber : Entity
         Number = number;
         Type = type;
     }
+
+    public string AreaCode { get; set; }
+    public string Number { get; set; }
+    public PhoneType Type { get; set; }
 
     protected IEnumerable<object> GetEqualityComponents()
     {

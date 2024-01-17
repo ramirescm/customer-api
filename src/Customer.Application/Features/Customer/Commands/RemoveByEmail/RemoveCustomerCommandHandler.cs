@@ -6,9 +6,9 @@ namespace Customer.Application.Features.Customer.Commands.RemoveByEmail;
 
 public class RemoveCustomerCommandHandler : ICommandHandler<RemoveCustomerByEmailCommand, RemoveCustomerResponse>
 {
-    private readonly IUnitOfWork _uow;
     private readonly ICustomerRepository _customerRepository;
-    
+    private readonly IUnitOfWork _uow;
+
     public RemoveCustomerCommandHandler(
         IUnitOfWork uow,
         ICustomerRepository customerRepository)
@@ -16,8 +16,9 @@ public class RemoveCustomerCommandHandler : ICommandHandler<RemoveCustomerByEmai
         _uow = uow;
         _customerRepository = customerRepository;
     }
-    
-    public async Task<RemoveCustomerResponse> Handle(RemoveCustomerByEmailCommand request, CancellationToken cancellationToken)
+
+    public async Task<RemoveCustomerResponse> Handle(RemoveCustomerByEmailCommand request,
+        CancellationToken cancellationToken)
     {
         await _customerRepository.RemoveByEmail(request.CustomerId, request.Email);
         await _uow.CommitAsync(cancellationToken);
