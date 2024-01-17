@@ -5,7 +5,7 @@ using Customer.Core.UoW;
 using FluentAssertions;
 using NSubstitute;
 
-namespace Customer.API.Tests.Handlers;
+namespace Customer.Application.Tests.Handlers;
 
 public class GetAllCustomersQueryHandlerTests
 {
