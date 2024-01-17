@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 using NSubstitute;
 using PhoneResponse = Customer.Application.Features.Customer.Queries.GetByPhone.PhoneResponse;
 
-namespace TestProject1;
+namespace Customer.API.Tests;
 
 public class EndpointTests
 {

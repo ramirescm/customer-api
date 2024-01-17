@@ -2,10 +2,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using NSubstitute;
 
-namespace TestProject1;
+namespace Customer.API.Tests;
 
 internal class TestApplication : WebApplicationFactory<Program>
 {
