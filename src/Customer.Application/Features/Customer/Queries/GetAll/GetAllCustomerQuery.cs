@@ -8,6 +8,6 @@ public class GetAllCustomerQuery : IQuery<GetAllCustomerResponse>
 
 public record GetAllCustomerResponse(List<CustomerResponse> Customers);
 
-public record CustomerResponse(int id, string fullName, string email, List<PhoneResponse> phones);
+public record CustomerResponse(int Id, string FullName, string Email, List<PhoneResponse> Phones);
 
-public record PhoneResponse(string areaCode, string number, string type);
+public record PhoneResponse(string AreaCode, string Number, string Type);

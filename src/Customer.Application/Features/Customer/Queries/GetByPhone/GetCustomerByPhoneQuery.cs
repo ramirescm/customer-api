@@ -1,9 +1,9 @@
 using Customer.Application.Abstractions;
 
-namespace Customer.Application.Commands.Customer.GetByPhone;
+namespace Customer.Application.Features.Customer.Queries.GetByPhone;
 
-public record GetCustomerByPhoneQuery(string areaCode, string number) : IQuery<GetCustomerByPhoneResponse>;
+public record GetCustomerByPhoneQuery(string AreaCode, string Number) : IQuery<GetCustomerByPhoneResponse>;
 
-public record GetCustomerByPhoneResponse(int id, string fullName, string email, List<Phone> phones);
+public record GetCustomerByPhoneResponse(int Id, string FullName, string Email, List<PhoneResponse> Phones);
 
-public record Phone(string areaCode, string number, string type);
+public record PhoneResponse(string AreaCode, string Number, string Type);

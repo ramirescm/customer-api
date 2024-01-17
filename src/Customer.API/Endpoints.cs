@@ -1,9 +1,10 @@
-using Customer.Application.Commands.Customer.GetByPhone;
 using Customer.Application.Features.Customer.Commands.Create;
 using Customer.Application.Features.Customer.Commands.RemoveByEmail;
 using Customer.Application.Features.Customer.Commands.UpdateEmail;
 using Customer.Application.Features.Customer.Commands.UpdatePhone;
 using Customer.Application.Features.Customer.Queries.GetAll;
+using Customer.Application.Features.Customer.Queries.GetByPhone;
+using Customer.Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,11 +45,10 @@ public static class Endpoints
                 return Results.Ok(customer);
             });
 
-        app.MapDelete("api/v1/customers/{id}/email",
-            async (IMediator mediator, int id, [FromBody] RemoveCustomerByEmailCommand request) =>
+        app.MapDelete("api/v1/customers/{id}/email/{email}",
+            async (IMediator mediator, int id, string email) =>
             {
-                request.CustomerId = id;
-                await mediator.Send(request);
+                await mediator.Send(new RemoveCustomerByEmailCommand { CustomerId = id, Email = email});
                 return Results.NoContent();
             });
     }

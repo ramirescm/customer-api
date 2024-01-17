@@ -27,14 +27,19 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\tests\Customer.Infra.Tests\Customer.Infra.Tests.csproj"/>
         <ProjectReference Include="..\Customer.Application\Customer.Application.csproj"/>
         <ProjectReference Include="..\Customer.Infra\Customer.Infra.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <None Update="appsettings.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
+
+    <!-- torna visivel o conteúdo interno da api para o projeto de test -->
+    <ItemGroup>
+        <InternalsVisibleTo Include="Customer.API.Tests" />
+    </ItemGroup>
+    
 </Project>

@@ -1,5 +1,4 @@
 using Customer.Application.Abstractions;
-using Customer.Application.Commands.Customer.GetByPhone;
 using Customer.Core.Repositories;
 using Customer.Core.UoW;
 
@@ -21,8 +20,8 @@ public class GetCustomerByPhoneQueryHandler : IQueryHandler<GetCustomerByPhoneQu
     public async Task<GetCustomerByPhoneResponse> Handle(GetCustomerByPhoneQuery request,
         CancellationToken cancellationToken)
     {
-        var customer = await _customerRepository.GetByPhone(request.areaCode, request.number);
-        var phones = customer.Phones.Select(e => new Phone(e.AreaCode, e.Number, e.Type.ToString())).ToList();
+        var customer = await _customerRepository.GetByPhone(request.AreaCode, request.Number);
+        var phones = customer.Phones.Select(e => new PhoneResponse(e.AreaCode, e.Number, e.Type.ToString())).ToList();
         return new GetCustomerByPhoneResponse(customer.Id, customer.FullName, customer.Email, phones);
     }
 }
